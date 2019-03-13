@@ -12,7 +12,7 @@ start:
 	pipenv run python run.py
 
 docker: test
-	docker build -t sdcplatform/rasrm-ops:latest .
+	docker build -t eu.gcr.io/census-rm-ci/census-rm-ops .
 
 docker-run: docker
-	docker run --network=rasrmdockerdev_default  -p 8003:80 sdcplatform/rasrm-ops:latest
+	docker run --network=censusrmdockerdev_default  -p 8003:80 eu.gcr.io/census-rm-ci/census-rm-ops:latest

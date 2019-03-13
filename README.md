@@ -1,5 +1,6 @@
+[![Build Status](https://travis-ci.com/ONSdigital/census-rm-ops.svg?branch=master)](https://travis-ci.com/ONSdigital/census-rm-ops)
 # Census RM Ops
-
+Forked from [rasrm-ops](https://github.com/ONSdigital/rasrm-ops)
 ## Purpose
 A utility tool to support the service operationally. This is intended for developers to use to support RM.
 
@@ -7,7 +8,10 @@ A utility tool to support the service operationally. This is intended for develo
 * Docker
 * pipenv
 
-## Building
+## Installing dependencies
+Run `make build`
+
+## Building a docker image
 Run `make docker`
 
 ## Running

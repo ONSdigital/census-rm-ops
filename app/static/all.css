@@ -1,0 +1,61 @@
+body {
+  font-family: 'ABeeZee', sans-serif; }
+
+  body {
+    background-color: #393939; }
+
+    p {
+      color: #DFDFE0; }
+
+      h1 {
+        color: #DFDFE0; }
+
+        h2 {
+          color: #DFDFE0; }
+
+          h3 {
+            color: #DFDFE0; }
+
+            h4 {
+              color: #DFDFE0; }
+
+              h5 {
+                color: #DFDFE0; }
+
+                h6 {
+                  color: #DFDFE0; }
+
+                  label {
+                    color: #DFDFE0; }
+
+                    a {
+                      color: #A8B2CD; }
+
+                      a:hover {
+                        color: #DDE6FC; }
+
+                        a:visited {
+                          color: #636D88; }
+
+                          ::selection {
+                            color: black;
+                            background: white; }
+
+                            .breadcrumb {
+                              background: #262628;
+                              color: white; }
+
+                              .breadcrumb a {
+                                color: #878787; }
+
+                                .breadcrumb a:visited {
+                                  color: #878787; }
+
+                                  .survey-list {
+                                    background: #4D4D4D;
+                                    height: 40px;
+                                    padding: 10px 15px;
+                                    font-size: 16px; }
+
+                                    .tab {
+                                      margin-left: 50px; }

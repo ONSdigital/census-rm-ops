@@ -1,13 +1,5 @@
 import os
 
-import cfenv
-
-cf_env = cfenv.AppEnv()
-
-
-def env_path(environment):
-    return f"-{environment}"
-
 
 class Config:
     PORT = os.getenv('PORT')  # This is not used in run.py which isn't used in cloudfoundry
@@ -16,25 +8,9 @@ class Config:
     PASSWORD = os.getenv("PASSWORD")
     BASIC_AUTH = (USERNAME, PASSWORD)
 
-    if cf_env.app:
-        ENVIRONMENT = cf_env.space
-        ACTION_SERVICE = f"http://actionsvc-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-        COLLECTION_EXERCISE_SERVICE = f"http://collectionexercisesvc-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-        COLLECTION_INSTRUMENT_SERVICE = f"http://ras-collection-instrument-{ENVIRONMENT}." \
-            f"{SERVICE_DOMAIN_SUFFIX}"
-        SAMPLE_SERVICE = f"http://samplesvc-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-        SURVEY_SERVICE = f"http://surveysvc-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-
 
 class CIConfig(Config):
     SERVICE_DOMAIN_SUFFIX = os.getenv("SERVICE_DOMAIN_SUFFIX")
-    if cf_env.app:
-        ENVIRONMENT = cf_env.space
-        ACTION_SERVICE = f"http://rm-action-service-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-        COLLECTION_EXERCISE_SERVICE = f"http://rm-collection-exercise-service-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-        COLLECTION_INSTRUMENT_SERVICE = f"http://ras-collection-instrument-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-        SAMPLE_SERVICE = f"http://rm-sample-service-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
-        SURVEY_SERVICE = f"http://rm-survey-service-{ENVIRONMENT}.{SERVICE_DOMAIN_SUFFIX}"
 
 
 class K8SDevelopmentConfig(Config):

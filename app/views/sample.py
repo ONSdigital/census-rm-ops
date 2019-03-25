@@ -4,7 +4,7 @@ from werkzeug.utils import redirect
 
 from app.auth import auth
 from app.controllers.action_controller import get_action_plans, plan_for_collection_exercise
-from app.sample_loader import SampleLoader
+from app.sample_loader.load_sample import load_sample
 from app.views.ci import get_collection_instrument_ids
 from app.views.collection_exercise import get_collection_exercise
 from app.views.survey import get_survey
@@ -38,8 +38,7 @@ def upload_sample(survey_id, collection_exercise_id):
 
     sample_file_in_bytes = request.files['sample'].stream
     sample_file = (line.decode() for line in sample_file_in_bytes)
-    sample_loader = SampleLoader()
-    sample_loader.load_sample(sample_file, collection_exercise_id, action_plan_id, collection_instrument_id)
+    load_sample(sample_file, collection_exercise_id, action_plan_id, collection_instrument_id)
 
     return redirect(url_for('collection_exercise.load_collection_exercise', survey_id=survey_id,
                             collection_exercise_id=collection_exercise_id))

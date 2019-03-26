@@ -1,35 +1,15 @@
 import csv
 import json
-import os
 from unittest import TestCase
 from unittest.mock import patch
 from xml.etree import ElementTree
 
-from app.sample_loader.load_sample import load_sample, load_sample_file
+from app.sample_loader.load_sample import load_sample
 
 
 @patch('app.sample_loader.load_sample.RabbitContext')
 @patch('app.sample_loader.load_sample.RedisPipelineContext')
 class TestLoadSample(TestCase):
-    sample_5_file_path = f'{os.path.dirname(__file__)}/resources/sample_5.csv'
-
-    def test_load_sample_file_publishes_cases_to_rabbit(self, _, patch_rabbit):
-        load_sample_file(self.sample_5_file_path, 'test_ce_uuid', 'test_ap_uuid', 'test_ci_uuid')
-
-        patch_rabbit_context = patch_rabbit.return_value.__enter__.return_value
-        publish_message_call_args = patch_rabbit_context.publish_message.call_args_list
-
-        with open(self.sample_5_file_path) as sample_file:
-            self._check_published_cases_contain_required_data(publish_message_call_args, sample_file)
-
-    def test_load_sample_file_writes_all_attributes_to_redis(self, patch_redis, _):
-        load_sample_file(self.sample_5_file_path, 'test_ce_uuid', 'test_ap_uuid', 'test_ci_uuid')
-
-        patch_redis_context = patch_redis.return_value.__enter__.return_value
-        redis_set_call_args_list = patch_redis_context.set_names_to_values.call_args_list
-
-        with open(self.sample_5_file_path) as sample_file:
-            self._check_attributes_sent_to_redis_match_sample_file(redis_set_call_args_list, sample_file)
 
     def test_load_sample_publishes_case_to_rabbit(self, _, patch_rabbit):
         sample_file = ('ARID,UPRN,ADDRESS_TYPE,ADDRESS_LINE1,POSTCODE,TEST_ATTRIBUTE',
@@ -44,7 +24,7 @@ class TestLoadSample(TestCase):
 
         self._check_published_cases_contain_required_data(publish_message_call_args, sample_file)
 
-    def test_load_sample_writes_attributes_to_redis(self, patch_redis, _):
+    def test_load_sample_writes_all_attributes_to_redis(self, patch_redis, _):
         sample_file = ('ARID,UPRN,ADDRESS_TYPE,ADDRESS_LINE1,POSTCODE,TEST_ATTRIBUTE',
                        'DDR190314000000195675,,HH,123 Fake Street,AB1 2CD,abc',
                        'DDR190314000000239595,,HH,13 O\'Made-up Lane,AB123CD,123')
@@ -65,6 +45,21 @@ class TestLoadSample(TestCase):
         case_tree = ElementTree.fromstring(case_xml)
         sample_unit_ref = next(element.text for element in case_tree if element.tag == 'sampleUnitRef')
         self.assertEqual('DDR190314000000195675', sample_unit_ref)
+
+    def test_redis_key_format(self, patch_redis, _):
+        # Given
+        sample_file = ('ARID,UPRN,ADDRESS_TYPE,ADDRESS_LINE1,POSTCODE,TEST_ATTRIBUTE',
+                       'DDR190314000000195675,,HH,123 Fake Street,AB1 2CD,abc')
+
+        # When
+        load_sample(sample_file, 'test_ce_uuid', 'test_ap_uuid', 'test_ci_uuid')
+
+        # Then
+        patch_redis_context = patch_redis.return_value.__enter__.return_value
+        redis_set_call = patch_redis_context.set_names_to_values.call_args_list[0][0][0]
+        sample_unit_id = json.loads(tuple(redis_set_call.values())[0])['id']
+
+        self.assertEqual(f'sampleunit:{sample_unit_id}', tuple(redis_set_call.keys())[0])
 
     def _check_published_cases_contain_required_data(self, publish_message_call_args, sample_file,
                                                      ce_id='test_ce_uuid',

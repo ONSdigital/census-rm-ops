@@ -1,4 +1,3 @@
-import argparse
 import csv
 import json
 import os
@@ -10,20 +9,6 @@ import jinja2
 
 from app.sample_loader.rabbit_context import RabbitContext
 from app.sample_loader.redis_pipeline_context import RedisPipelineContext
-
-
-def parse_arguments():
-    parser = argparse.ArgumentParser(description='Load a sample file into response management.')
-    parser.add_argument('sample_file_path', help='path to the sample file', type=str)
-    parser.add_argument('collection_exercise_id', help='collection exercise ID', type=str)
-    parser.add_argument('action_plan_id', help='action plan ID', type=str)
-    parser.add_argument('collection_instrument_id', help='collection instrument ID', type=str)
-    return parser.parse_args()
-
-
-def load_sample_file(sample_file_path, collection_exercise_id, action_plan_id, collection_instrument_id):
-    with open(sample_file_path) as sample_file:
-        load_sample(sample_file, collection_exercise_id, action_plan_id, collection_instrument_id)
 
 
 def load_sample(sample_file: Iterable[str], collection_exercise_id: str, action_plan_id: str,
@@ -48,7 +33,7 @@ def _load_sample_units(action_plan_id: str, collection_exercise_id: str, collect
                                                      collection_instrument_id=collection_instrument_id),
                 content_type='text/xml')
             sample_unit = {
-                f'sample_unit: {sample_unit_id}': _create_sample_unit_json(sample_unit_id, sample_row)}
+                f'sampleunit:{sample_unit_id}': _create_sample_unit_json(sample_unit_id, sample_row)}
             redis_pipeline.set_names_to_values(sample_unit)
 
             if count % 5000 == 0:
@@ -60,9 +45,3 @@ def _load_sample_units(action_plan_id: str, collection_exercise_id: str, collect
 def _create_sample_unit_json(sample_unit_id, sample_unit) -> str:
     sample_unit = {'id': str(sample_unit_id), 'attributes': sample_unit}
     return json.dumps(sample_unit)
-
-
-if __name__ == "__main__":
-    args = parse_arguments()
-    load_sample_file(args.sample_file_path, args.collection_exercise_id, args.action_plan_id,
-                     args.collection_instrument_id)

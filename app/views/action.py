@@ -12,13 +12,9 @@ from app.views.timestamp import convert_to_iso_timestamp
 blueprint = Blueprint('action_plan', __name__, template_folder='templates')
 
 # Get this from an endpoint (That doesn't exist yet)
-action_types = [
-    "SOCIALNOT",
-    "SOCIALREM",
-    "SOCIALSNE",
-    "SOCIALPRENOT",
-    "SOCIALICF"
-]
+action_types = {
+    "ICL1E"
+}
 
 
 @auth.login_required

@@ -1,5 +1,5 @@
 from io import BytesIO
-from unittest.mock import patch, ANY
+from unittest.mock import ANY, patch
 
 
 def test_get_upload_sample_page(client, requests_mock):
@@ -26,7 +26,6 @@ def test_upload_social_sample_file(client, requests_mock):
                                data={'sample': (BytesIO(b'header\nline'), 'sample.csv')},
                                follow_redirects=True)
 
-    # load_sample_call = load_sample_mock.return_value.load_sample
     load_sample_mock.assert_called_once_with(ANY, 'collex_id', 'action_plan_id', 'collection_instrument_id')
 
     assert response.status_code == 200

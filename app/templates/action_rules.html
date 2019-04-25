@@ -1,26 +1,22 @@
 {% extends "base.html" %} {% block breadcrumb %}
-<li class="breadcrumb-item"><a href="/">Home</a></li>
-<li class="breadcrumb-item"><a href="/survey/{{ survey.id }}">{{ survey.shortName }}</a></li>
-<li class="breadcrumb-item"><a href="/survey/{{ survey.id }}/collection/{{ collection_exercise.id }}">{{
-    collection_exercise.userDescription
-    }}
-</a></li>
-<li class="breadcrumb-item active" aria-current="page">Events</li>
+<li class="breadcrumb-item"><a href="/">Action Plans</a></li>
+<li class="breadcrumb-item"><a href="/action-rules/{{ action_plan.id }}">{{ action_plan.name }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">Action Rules</li>
 {% endblock %} {% block main %}
 
-<h1>Current action plans</h1>
-{% if not action_plan_data %}
-  <p class="tab">No action plans have been added.</p>
+<h1>Current action rules</h1>
+{% if not action_rule_data %}
+  <p class="tab">No action rules have been added.</p>
 {% endif %}
-{% for action_plan in action_plan_data %}
+{% for action_rule in action_rule_data %}
   <div class="row">
     <div class="col">
-      <label><b>Action plan: </b>{{ action_plan.name }}</label>
+      <label><b>Action rule: </b>{{ action_rule.name }}</label>
       <br>
-      {% if not action_plan.action_rules %}
-        <label class="tab">No action rules have been added for this plan.</label>
+      {% if not action_rule.action_rules %}
+        <label class="tab">No action rules have been added for this rule.</label>
       {% endif %}
-      {% for rule in action_plan.action_rules %}
+      {% for rule in action_rule.action_rules %}
         <div class="row">
           <label class="tab"><b>{{ rule.name }}:</b> {{ rule.triggerDateTime }}</label>
         </div>
@@ -33,10 +29,10 @@
 <div class="row">
     <form class="col-5">
         <div class="form-group">
-            <label for="action_plan_id">Action plan</label>
-            <select class="form-control" id="action_plan_id" name="action_plan_id">
-                {% for action_plan in action_plan_data %}
-                <option value="{{ action_plan.id }}">{{ action_plan.name }}</option>
+            <label for="action_rule_id">Action rule</label>
+            <select class="form-control" id="action_rule_id" name="action_rule_id">
+                {% for action_rule in action_rule_data %}
+                <option value="{{ action_rule.id }}">{{ action_rule.name }}</option>
                 {% endfor %}
             </select>
         </div>

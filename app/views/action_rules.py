@@ -32,12 +32,13 @@ def create_action_rule(action_plan_id):
     except ValueError:
         abort(400)
 
-    classifiers = None
     if request.form['classifiers']:
         try:
             classifiers = json.loads(request.form['classifiers'])
         except ValueError:
             abort(Response('Invalid classifiers json', 400))
+    else:
+        classifiers = None
 
     action_plan = action_controller.get_action_plan(action_plan_id)
 

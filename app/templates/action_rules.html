@@ -1,68 +1,56 @@
 {% extends "base.html" %} {% block breadcrumb %}
-<li class="breadcrumb-item"><a href="/">Action Plans</a></li>
-<li class="breadcrumb-item"><a href="/action-rules/{{ action_plan.id }}">{{ action_plan.name }}</a></li>
-<li class="breadcrumb-item active" aria-current="page">Action Rules</li>
+    <li class="breadcrumb-item"><a href="/">Action Plans</a></li>
+    <li class="breadcrumb-item"><a href="/action-rules/{{ action_plan.id }}">{{ action_plan.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Action Rules</li>
 {% endblock %} {% block main %}
-
-<h1>Current action rules</h1>
-{% if not action_rule_data %}
-  <p class="tab">No action rules have been added.</p>
-{% endif %}
-{% for action_rule in action_rule_data %}
-  <div class="row">
-    <div class="col">
-      <label><b>Action rule: </b>{{ action_rule.name }}</label>
-      <br>
-      {% if not action_rule.action_rules %}
-        <label class="tab">No action rules have been added for this rule.</label>
-      {% endif %}
-      {% for rule in action_rule.action_rules %}
-        <div class="row">
-          <label class="tab"><b>{{ rule.name }}:</b> {{ rule.triggerDateTime }}</label>
+    <div class="row">
+        <div class="col-8">
+            <h2>Current action rules</h2>
+            {% if not action_rules %}
+                <p class="tab">No action rules exist for this action plan.</p>
+            {% endif %}
+            {% for action_rule in action_rules %}
+                <div class="col">
+                    <label><b>Action type: </b>{{ action_rule.action_type }}</label>
+                    <br>
+                    <div class="row">
+                        <label class="tab"><b>Trigger date time:</b> {{ action_rule.trigger_date_time }}</label>
+                    </div>
+                    <div class="row">
+                        <label class="tab"><b>Classifiers:</b> {{ action_rule.classifiers }}</label>
+                    </div>
+                    <div class="row">
+                        <label class="tab"><b>Has triggered:</b> {{ action_rule.has_triggered }}</label>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-      {% endfor %}
+        <form class="col-4">
+            <h2>Create action rule</h2>
+            <div class="form-group">
+                <label for="action_rule_id">ID</label>
+                <input class="form-control" type="text" id="action_rule_id" name="action_rule_id"
+                       placeholder="Leave blank to generate">
+            </div>
+            <div class="form-group">
+                <label for="action_type">Action type</label>
+                <select class="form-control" id="action_type" name="action_type">
+                    {% for item in action_types %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="trigger_date_time">Trigger date time</label>
+                <input class="form-control" type="datetime-local" id="trigger_date_time" name="trigger_date_time">
+            </div>
+            <div class="form-group">
+                <label for="classifiers">Classifiers JSON</label>
+                <textarea class="form-control" id="classifiers" name="classifiers" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="submit" formmethod="post" value="Create">
+            </div>
+        </form>
     </div>
-  </div>
-{% endfor %}
-<hr>
-<h1>Create action rules for {{ collection_exercise.userDescription }}</h1>
-<div class="row">
-    <form class="col-5">
-        <div class="form-group">
-            <label for="action_rule_id">Action rule</label>
-            <select class="form-control" id="action_rule_id" name="action_rule_id">
-                {% for action_rule in action_rule_data %}
-                <option value="{{ action_rule.id }}">{{ action_rule.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="name">Action rule name</label>
-            <input class="form-control" type="text" id="name" name="name">
-        </div>
-        <div class="form-group">
-            <label for="description">Action rule description</label>
-            <input class="form-control" type="text" id="description" name="description">
-        </div>
-        <div class="form-group">
-            <label for="action_rule_type">Action rule type</label>
-            <select class="form-control" id="action_rule_type" name="action_rule_type">
-                {% for item in action_types %}
-                <option value="{{ item }}">{{ item }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="priority">Priority</label>
-            <input class="form-control" type="number" min="1" max="5" id="priority" name="priority">
-        </div>
-        <div class="form-group">
-            <label for="timestamp">Action timestamp</label>
-            <input class="form-control" type="datetime-local" id="timestamp" name="timestamp">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="submit" formmethod="post" value="Create action rule">
-        </div>
-    </form>
-</div>
 {% endblock %}

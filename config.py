@@ -20,7 +20,7 @@ class K8SDevelopmentConfig(Config):
     RABBITMQ_HOST = os.getenv('RABBITMQ_SERVICE_HOST')
     RABBITMQ_PORT = os.getenv('RABBITMQ_SERVICE_PORT')
     RABBITMQ_VHOST = os.getenv('RABBITMQ_VHOST', '/')
-    RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'Case.CaseDelivery')
+    RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'exampleInboundQueue')
     RABBITMQ_EXCHANGE = os.getenv('RABBITMQ_EXCHANGE', '')
     RABBITMQ_USER = os.getenv('RABBITMQ_USER', 'guest')
     RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'guest')
@@ -34,7 +34,7 @@ class DevelopmentConfig(Config):
     RABBITMQ_HOST = os.getenv('RABBITMQ_SERVICE_HOST', 'localhost')
     RABBITMQ_PORT = os.getenv('RABBITMQ_SERVICE_PORT', '6672')
     RABBITMQ_VHOST = os.getenv('RABBITMQ_VHOST', '/')
-    RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'Case.CaseDelivery')
+    RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'exampleInboundQueue')
     RABBITMQ_EXCHANGE = os.getenv('RABBITMQ_EXCHANGE', '')
     RABBITMQ_USER = os.getenv('RABBITMQ_USER', 'guest')
     RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'guest')
@@ -46,7 +46,18 @@ class DockerConfig(DevelopmentConfig):
     RABBITMQ_HOST = os.getenv('RABBITMQ_SERVICE_HOST', 'rabbitmq')
     RABBITMQ_PORT = os.getenv('RABBITMQ_SERVICE_PORT', '5672')
     RABBITMQ_VHOST = os.getenv('RABBITMQ_VHOST', '/')
-    RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'Case.CaseDelivery')
+    RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'exampleInboundQueue')
     RABBITMQ_EXCHANGE = os.getenv('RABBITMQ_EXCHANGE', '')
     RABBITMQ_USER = os.getenv('RABBITMQ_USER', 'guest')
     RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'guest')
+
+
+class UnitTestConfig(DevelopmentConfig):
+    ACTION_SERVICE = 'http://test'
+    RABBITMQ_EXCHANGE = 'test_exchange'
+    RABBITMQ_HOST = 'test_host'
+    RABBITMQ_PASSWORD = 'test_pass'
+    RABBITMQ_PORT = 'test_port'
+    RABBITMQ_QUEUE = 'test_queue'
+    RABBITMQ_USER = 'test_user'
+    RABBITMQ_VHOST = 'test_vhost'

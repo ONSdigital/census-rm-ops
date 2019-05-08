@@ -1,6 +1,5 @@
-import os
-
 import pika
+from flask import current_app
 
 from app.sample_loader.exceptions import RabbitConnectionClosedError
 
@@ -8,13 +7,13 @@ from app.sample_loader.exceptions import RabbitConnectionClosedError
 class RabbitContext:
 
     def __init__(self, **kwargs):
-        self._host = kwargs.get('host') or os.getenv('RABBITMQ_SERVICE_HOST', 'localhost')
-        self._port = kwargs.get('port') or os.getenv('RABBITMQ_SERVICE_PORT', '5672')
-        self._vhost = kwargs.get('vhost') or os.getenv('RABBITMQ_VHOST', '/')
-        self._exchange = kwargs.get('exchange') or os.getenv('RABBITMQ_EXCHANGE', '')
-        self._user = kwargs.get('user') or os.getenv('RABBITMQ_USER', 'guest')
-        self._password = kwargs.get('password') or os.getenv('RABBITMQ_PASSWORD', 'guest')
-        self.queue_name = kwargs.get('queue_name') or os.getenv('RABBITMQ_QUEUE', 'exampleInboundQueue')
+        self._host = kwargs.get('host') or current_app.config['RABBITMQ_HOST']
+        self._port = kwargs.get('port') or current_app.config['RABBITMQ_PORT']
+        self._vhost = kwargs.get('vhost') or current_app.config['RABBITMQ_VHOST']
+        self._exchange = kwargs.get('exchange') or current_app.config['RABBITMQ_EXCHANGE']
+        self._user = kwargs.get('user') or current_app.config['RABBITMQ_USER']
+        self._password = kwargs.get('password') or current_app.config['RABBITMQ_PASSWORD']
+        self.queue_name = kwargs.get('queue_name') or current_app.config['RABBITMQ_QUEUE']
 
     def __enter__(self):
         self._open_connection()

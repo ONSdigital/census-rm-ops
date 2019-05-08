@@ -1,12 +1,17 @@
 from unittest import TestCase
 from unittest.mock import patch
 
+from app import create_app
 from app.sample_loader.exceptions import RabbitConnectionClosedError
 from app.sample_loader.rabbit_context import RabbitContext
 
 
 @patch('app.sample_loader.rabbit_context.pika')
 class TestRabbitContext(TestCase):
+
+    def setUp(self) -> None:
+        self.app = create_app('UnitTestConfig')
+        self.app.app_context().push()
 
     def test_context_manager_opens_connection_and_channel(self, patch_pika):
         with RabbitContext():

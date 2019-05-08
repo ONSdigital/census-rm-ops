@@ -30,20 +30,7 @@ def test_create_action_plan(client, requests_mock):
 
 
 def test_get_action_plan_page(client, requests_mock):
-    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json={
-        "name": "test name",
-        "description": "test description",
-        "_links": {
-            "self": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionPlan": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionRules": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
-            }
-        }})
+    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json=ACTION_PLAN)
 
     response = client.get('/action-plans/4c27fcbf-e069-44db-a239-99c9cd70a1d0')
 
@@ -53,46 +40,8 @@ def test_get_action_plan_page(client, requests_mock):
 
 
 def test_get_action_rules(client, requests_mock):
-    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json={
-        "name": "test name",
-        "description": "test description",
-        "_links": {
-            "self": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionPlan": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionRules": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
-            }
-        }})
-    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules', json={
-        "_embedded": {
-            "actionRules": [{
-                "actionType": "ICL1E",
-                "triggerDateTime": "2019-05-08T08:00:00Z",
-                "hasTriggered": False,
-                "classifiers": None,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
-                    },
-                    "actionRule": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
-                    },
-                    "actionPlan": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9/actionPlan"
-                    }
-                }
-            }]
-        },
-        "_links": {
-            "self": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
-            }
-        }
-    })
+    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json=ACTION_PLAN)
+    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules', json=ACTION_RULES)
 
     response = client.get('/action-plans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/action-rules')
 
@@ -103,46 +52,8 @@ def test_get_action_rules(client, requests_mock):
 
 
 def test_create_action_rule(client, requests_mock):
-    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json={
-        "name": "test name",
-        "description": "test description",
-        "_links": {
-            "self": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionPlan": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionRules": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
-            }
-        }})
-    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules', json={
-        "_embedded": {
-            "actionRules": [{
-                "actionType": "ICL1E",
-                "triggerDateTime": "2019-05-08T08:00:00Z",
-                "hasTriggered": False,
-                "classifiers": None,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
-                    },
-                    "actionRule": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
-                    },
-                    "actionPlan": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9/actionPlan"
-                    }
-                }
-            }]
-        },
-        "_links": {
-            "self": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
-            }
-        }
-    })
+    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json=ACTION_PLAN)
+    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules', json=ACTION_RULES)
     requests_mock.post('/actionRules', json={})
     response = client.post('/action-plans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/action-rules', data={
         'trigger_date_time': '2019-05-08T09:00',
@@ -153,46 +64,8 @@ def test_create_action_rule(client, requests_mock):
 
 
 def test_invalid_classifiers_json_responds_400(client, requests_mock):
-    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json={
-        "name": "test name",
-        "description": "test description",
-        "_links": {
-            "self": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionPlan": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
-            },
-            "actionRules": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
-            }
-        }})
-    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules', json={
-        "_embedded": {
-            "actionRules": [{
-                "actionType": "ICL1E",
-                "triggerDateTime": "2019-05-08T08:00:00Z",
-                "hasTriggered": False,
-                "classifiers": None,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
-                    },
-                    "actionRule": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
-                    },
-                    "actionPlan": {
-                        "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9/actionPlan"
-                    }
-                }
-            }]
-        },
-        "_links": {
-            "self": {
-                "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
-            }
-        }
-    })
+    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json=ACTION_PLAN)
+    requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules', json=ACTION_RULES)
     requests_mock.post('/actionRules', json={})
     response = client.post('/action-plans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/action-rules', data={
         'trigger_date_time': '2019-05-08T09:00',
@@ -202,3 +75,46 @@ def test_invalid_classifiers_json_responds_400(client, requests_mock):
 
     assert response.status_code == 400
     assert b'Invalid classifiers json' in response.data
+
+
+ACTION_PLAN = {
+    "name": "test name",
+    "description": "test description",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
+        },
+        "actionPlan": {
+            "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0"
+        },
+        "actionRules": {
+            "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
+        }
+    }}
+
+ACTION_RULES = {
+    "_embedded": {
+        "actionRules": [{
+            "actionType": "ICL1E",
+            "triggerDateTime": "2019-05-08T08:00:00Z",
+            "hasTriggered": False,
+            "classifiers": None,
+            "_links": {
+                "self": {
+                    "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
+                },
+                "actionRule": {
+                    "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"
+                },
+                "actionPlan": {
+                    "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9/actionPlan"
+                }
+            }
+        }]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8301/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/actionRules"
+        }
+    }
+}

@@ -22,7 +22,7 @@ def _load_sample_units(action_plan_id: str, collection_exercise_id: str, sample_
             if count % 5000 == 0:
                 sys.stdout.write(f'\r{count} sample units loaded')
                 sys.stdout.flush()
-    print(f'\nAll sample units have been added to the queue {rabbit.queue_name} and Redis')
+    print(f'\nAll sample units have been added to the queue {rabbit.queue_name}')
 
 
 def _create_case_json(sample_row, collection_exercise_id, action_plan_id) -> str:
@@ -40,4 +40,3 @@ def _create_case_json(sample_row, collection_exercise_id, action_plan_id) -> str
                    'treatmentCode': sample_row['TREATMENT_CODE'], 'collectionExerciseId': collection_exercise_id,
                    'actionPlanId': action_plan_id}
     return json.dumps(create_case)
-

@@ -1,8 +1,6 @@
 import uuid
 
-import requests
-from flask import Blueprint, request, redirect, url_for, abort, render_template
-from flask import current_app as app
+from flask import Blueprint, request, redirect, url_for, render_template
 
 from app.auth import auth
 from app.controllers import action_controller
@@ -32,7 +30,7 @@ def get_action_plan(action_plan_id):
 @auth.login_required
 def create_action_plan():
     action_plan = {
-        'id':   request.form['action_plan_id'] or str(uuid.uuid4()),
+        'id': request.form.get('action_plan_id', str(uuid.uuid4())),
         'name': request.form['name'],
         'description': request.form['description'],
     }

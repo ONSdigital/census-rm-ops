@@ -32,7 +32,7 @@ def create_action_rule(action_plan_id):
     except ValueError:
         abort(400)
 
-    if request.form['classifiers']:
+    if request.form.get('classifiers'):
         try:
             classifiers = json.loads(request.form['classifiers'])
         except ValueError:
@@ -42,7 +42,7 @@ def create_action_rule(action_plan_id):
 
     action_plan = action_controller.get_action_plan(action_plan_id)
 
-    action_controller.create_action_rule(action_rule_id=request.form['action_rule_id'] or str(uuid.uuid4()),
+    action_controller.create_action_rule(action_rule_id=request.form.get('action_rule_id') or str(uuid.uuid4()),
                                          trigger_date_time=trigger_date_time,
                                          classifiers=classifiers,
                                          action_plan_url=action_plan['url'],

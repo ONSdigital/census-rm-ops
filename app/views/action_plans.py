@@ -30,7 +30,7 @@ def get_action_plan(action_plan_id):
 @auth.login_required
 def create_action_plan():
     action_plan = {
-        'id': request.form.get('action_plan_id', str(uuid.uuid4())),
+        'id': request.form.get('action_plan_id') or str(uuid.uuid4()),
         'name': request.form['name'],
         'description': request.form['description'],
     }

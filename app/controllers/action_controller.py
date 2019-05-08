@@ -25,8 +25,7 @@ def get_action_plans():
 
 def get_action_plan(action_plan_id):
     response = requests.get(
-        f"{app.config['ACTION_SERVICE']}/actionPlans/{action_plan_id}",
-        auth=app.config['BASIC_AUTH'])
+        f"{app.config['ACTION_SERVICE']}/actionPlans/{action_plan_id}")
     response.raise_for_status()
     action_plan = response.json()
     return {'id': action_plan['_links']['self']['href'].split('/')[-1],

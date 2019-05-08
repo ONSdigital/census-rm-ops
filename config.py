@@ -6,7 +6,6 @@ class Config:
     SERVICE_DOMAIN_SUFFIX = os.getenv("SERVICE_DOMAIN_SUFFIX")
     USERNAME = os.getenv("USERNAME")
     PASSWORD = os.getenv("PASSWORD")
-    BASIC_AUTH = (USERNAME, PASSWORD)
 
 
 class CIConfig(Config):
@@ -17,7 +16,6 @@ class K8SDevelopmentConfig(Config):
     PORT = os.getenv("PORT", 80)
     USERNAME = os.getenv('USERNAME', "admin")
     PASSWORD = os.getenv('USERNAME', "secret")
-    BASIC_AUTH = ("admin", "secret")
     ACTION_SERVICE = os.getenv('ACTION_SERVICE')
     RABBITMQ_HOST = os.getenv('RABBITMQ_SERVICE_HOST')
     RABBITMQ_PORT = os.getenv('RABBITMQ_SERVICE_PORT')
@@ -32,7 +30,6 @@ class DevelopmentConfig(Config):
     PORT = os.getenv("PORT", 8003)
     USERNAME = "admin"
     PASSWORD = "secret"
-    BASIC_AUTH = ("admin", "secret")
     ACTION_SERVICE = 'http://localhost:8301'
     RABBITMQ_HOST = os.getenv('RABBITMQ_SERVICE_HOST', 'localhost')
     RABBITMQ_PORT = os.getenv('RABBITMQ_SERVICE_PORT', '6672')

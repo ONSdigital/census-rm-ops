@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="/">Action Plans</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ action_plan.name }}</li>
+{% endblock %}
+{% block main %}
+    <div class="row">
+        <div class="col">
+            <h2>{{ action_plan.name }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>{{ action_plan.description }}</p>
+        </div>
+    </div>
+    <div>
+        <a href="/action-plans/{{ action_plan.id }}/sample">Load Sample</a>
+    </div>
+    <div>
+        <a href="/action-plans/{{ action_plan.id }}/action-rules">View / Create Action Rules</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">Action Plans</li>
+{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-8">
+        <h2>Action Plans</h2>
+        {% if action_plans %}
+        <p>This is a list of the action plans that have already been created</p>
+        <ul class="list-group">
+            {% for action_plan in action_plans %}
+            <a class="list-group-item survey-list" href="/action-plans/{{ action_plan.id }}">{{ action_plan.name }}</a>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No action plans have been created</p>
+        {% endif %}
+    </div>
+    <div class="col-4">
+        <h2>Create an action plan</h2>
+        <form action="/action-plans">
+            <div class="form-group">
+                <label for="action_plan_id">ID</label>
+                <input class="form-control" type="text" id="action_plan_id" name="action_plan_id" placeholder="Leave blank to generate">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input class="form-control" type="text" id="description" name="description" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="submit" value="Create" formmethod="post">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

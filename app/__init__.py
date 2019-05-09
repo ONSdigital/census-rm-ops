@@ -1,4 +1,5 @@
 import os
+
 from flask import Flask
 from flask_assets import Environment
 from webassets import Bundle

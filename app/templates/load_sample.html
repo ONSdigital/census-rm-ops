@@ -1,15 +1,12 @@
 {% extends "base.html" %} {% block breadcrumb %}
-<li class="breadcrumb-item"><a href="/">Home</a></li>
-<li class="breadcrumb-item"><a href="/survey/{{ survey.id }}">{{ survey.shortName }}</a></li>
-<li class="breadcrumb-item"><a href="/survey/{{ survey.id }}/collection/{{ collection_exercise.id }}">{{
-    collection_exercise.userDescription
-    }}</a></li>
-<li class="breadcrumb-item active" aria-current="page">Events</li>
+<li class="breadcrumb-item"><a href="/">Action Plans</a></li>
+<li class="breadcrumb-item"><a href="/action-plans/{{ action_plan.id }}">{{ action_plan.name }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">Load Sample</li>
 {% endblock %} {% block main %}
 <div class="row">
     <div class="col">
-        <h1>Upload a sample for {{ collection_exercise.userDescription }}</h1>
-        <p>Upload a sample for the collection exercise. Invalid samples will not be displayed here</p>
+        <h1>Upload a sample for {{ action_plan.name }}</h1>
+        <p>Upload a sample for the action plan. The action plan ID will be used as the collection exercise ID.</p>
         <form enctype="multipart/form-data">
             <div class="input-group mb-3">
                 <div class="custom-file">

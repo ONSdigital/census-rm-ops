@@ -6,7 +6,8 @@ from app import create_app
 
 @pytest.fixture
 def client():
-    app = create_app('DevelopmentConfig')
+    app = create_app('UnitTestConfig')
+
     client = app.test_client()
 
     old_open = client.open

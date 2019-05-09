@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="/">Action Plans</a></li>
+    <li class="breadcrumb-item"><a href="/action-plans/{{ action_plan.id }}">{{ action_plan.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Action Rules</li>
+{% endblock %} {% block main %}
+    <div class="row">
+        <div class="col-8">
+            <h2>Current action rules</h2>
+            {% if not action_rules %}
+                <p class="tab">No action rules exist for this action plan.</p>
+            {% endif %}
+            {% for action_rule in action_rules %}
+                <div class="col">
+                    <label><b>Action type: </b>{{ action_rule.action_type }}</label>
+                    <br>
+                    <div class="row">
+                        <label class="tab"><b>Trigger date time:</b> {{ action_rule.trigger_date_time }}</label>
+                    </div>
+                    <div class="row">
+                        <label class="tab"><b>Classifiers:</b> {{ action_rule.classifiers }}</label>
+                    </div>
+                    <div class="row">
+                        <label class="tab"><b>Has triggered:</b> {{ action_rule.has_triggered }}</label>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <form class="col-4">
+            <h2>Create action rule</h2>
+            <div class="form-group">
+                <label for="action_rule_id">ID</label>
+                <input class="form-control" type="text" id="action_rule_id" name="action_rule_id"
+                       placeholder="Leave blank to generate">
+            </div>
+            <div class="form-group">
+                <label for="action_type">Action type</label>
+                <select class="form-control" id="action_type" name="action_type">
+                    {% for item in action_types %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="trigger_date_time">Trigger date time</label>
+                <input class="form-control" type="datetime-local" id="trigger_date_time" name="trigger_date_time">
+            </div>
+            <div class="form-group">
+                <label for="classifiers">Classifiers JSON</label>
+                <textarea class="form-control" id="classifiers" name="classifiers" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="submit" formmethod="post" value="Create">
+            </div>
+        </form>
+    </div>
+{% endblock %}

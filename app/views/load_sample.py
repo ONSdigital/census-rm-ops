@@ -4,7 +4,7 @@ from werkzeug.utils import redirect
 
 from app.auth import auth
 from app.controllers import action_controller
-from app.sample_loader.load_sample import load_sample
+from app.load_sample import load_sample
 
 blueprint = Blueprint('load_sample', __name__, template_folder='templates')
 

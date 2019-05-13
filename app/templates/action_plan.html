@@ -20,4 +20,7 @@
     <div>
         <a href="/action-plans/{{ action_plan.id }}/action-rules">View / Create Action Rules</a>
     </div>
+    <div>
+        <a href="{{ url_for('generate_qid_batch.get_generate_qid_batch') }}">Generate Unaddressed QID/UAC Pairs</a>
+    </div>
 {% endblock %}

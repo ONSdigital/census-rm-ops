@@ -1,8 +1,6 @@
 import pika
 from flask import current_app
 
-from app.sample_loader.exceptions import RabbitConnectionClosedError
-
 
 class RabbitContext:
 
@@ -29,9 +27,7 @@ class RabbitContext:
                                       self._vhost,
                                       pika.PlainCredentials(self._user, self._password)))
         self._channel = self._connection.channel()
-
-        if self.queue_name == 'localtest':
-            self._channel.queue_declare(queue=self.queue_name)
+        self._channel.queue_declare(queue=self.queue_name)
 
     def publish_message(self, message: str, content_type: str):
         if not self._connection.is_open:
@@ -40,3 +36,7 @@ class RabbitContext:
                                     routing_key=self.queue_name,
                                     body=message,
                                     properties=pika.BasicProperties(content_type=content_type))
+
+
+class RabbitConnectionClosedError(Exception):
+    pass

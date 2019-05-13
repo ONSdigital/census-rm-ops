@@ -3,7 +3,7 @@ import json
 import sys
 from typing import Iterable
 
-from app.sample_loader.rabbit_context import RabbitContext
+from app.rabbit_context import RabbitContext
 
 
 def load_sample(sample_file: Iterable[str], collection_exercise_id: str, action_plan_id: str):

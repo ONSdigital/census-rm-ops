@@ -48,6 +48,7 @@ class DevelopmentConfig(Config):
 
 class DockerConfig(DevelopmentConfig):
     PORT = 80
+    ACTION_SERVICE = 'http://actionscheduler:8301'
     RABBITMQ_HOST = os.getenv('RABBITMQ_SERVICE_HOST', 'rabbitmq')
     RABBITMQ_PORT = os.getenv('RABBITMQ_SERVICE_PORT', '5672')
 

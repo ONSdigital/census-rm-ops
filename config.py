@@ -28,7 +28,7 @@ class K8SDevelopmentConfig(Config):
     RABBITMQ_EXCHANGE = os.getenv('RABBITMQ_EXCHANGE', '')
     RABBITMQ_USER = os.getenv('RABBITMQ_USER', 'guest')
     RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'guest')
-    RABBITMQ_UNADDRESSED_QID_QUEUE = os.getenv('RABBITMQ_UNADDRESSED_QID_QUEUE', 'unaddressedQidRequests')
+    RABBITMQ_UNADDRESSED_QID_QUEUE = os.getenv('RABBITMQ_UNADDRESSED_QID_QUEUE', 'unaddressedRequestQueue')
 
 
 class DevelopmentConfig(Config):
@@ -43,7 +43,7 @@ class DevelopmentConfig(Config):
     RABBITMQ_EXCHANGE = os.getenv('RABBITMQ_EXCHANGE', '')
     RABBITMQ_USER = os.getenv('RABBITMQ_USER', 'guest')
     RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'guest')
-    RABBITMQ_UNADDRESSED_QID_QUEUE = os.getenv('RABBITMQ_UNADDRESSED_QID_QUEUE', 'unaddressedQidRequests')
+    RABBITMQ_UNADDRESSED_QID_QUEUE = os.getenv('RABBITMQ_UNADDRESSED_QID_QUEUE', 'unaddressedRequestQueue')
 
 
 class DockerConfig(DevelopmentConfig):
@@ -61,4 +61,4 @@ class UnitTestConfig(DevelopmentConfig):
     RABBITMQ_QUEUE = 'test_queue'
     RABBITMQ_USER = 'test_user'
     RABBITMQ_VHOST = 'test_vhost'
-    RABBITMQ_UNADDRESSED_QID_QUEUE = 'test_unaddressed_queue'
+    RABBITMQ_UNADDRESSED_QID_QUEUE = 'testUnaddressedRequestQueue'

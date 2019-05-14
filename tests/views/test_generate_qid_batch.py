@@ -10,7 +10,8 @@ def test_get_upload_sample_page(client):
 
 
 def test_upload_qid_batch_config_file(client):
-    with patch('app.views.generate_qid_batch.generate_messages_from_config_file') as generate_messages_from_config_file_patch:
+    with patch('app.views.generate_qid_batch.generate_messages_from_config_file') \
+            as generate_messages_from_config_file_patch:
         response = client.post('/generate-qid-batch',
                                data={'config-file': (BytesIO(b'header\nline'), 'config-file.csv')})
 

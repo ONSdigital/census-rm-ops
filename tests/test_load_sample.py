@@ -3,10 +3,10 @@ import json
 from unittest import TestCase
 from unittest.mock import patch
 
-from app.sample_loader.load_sample import load_sample
+from app.load_sample import load_sample
 
 
-@patch('app.sample_loader.load_sample.RabbitContext')
+@patch('app.load_sample.RabbitContext')
 class TestLoadSample(TestCase):
 
     def test_load_sample_publishes_case_to_rabbit(self, patch_rabbit):

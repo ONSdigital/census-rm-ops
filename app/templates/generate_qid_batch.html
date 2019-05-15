@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/">Action Plans</a></li>
+<li class="breadcrumb-item active" aria-current="page">Generate Unaddressed QID Pairs</li>
+{% endblock %} {% block main %}
+<div class="row">
+    <div class="col">
+        <h1>Upload a QID batch config file</h1>
+        <p>Upload a CSV config file specifying the questionnaire type and quantities of unaddressed QID/UAC pairs to generate</p>
+        <form enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" id="config-file-upload" name="config-file">
+                    <label class="custom-file-label" for="config-file-upload">Upload config file</label>
+                </div>
+                <div class="input-group-append">
+                    <input type="submit" class="input-group-text" value="Upload" formmethod="post">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

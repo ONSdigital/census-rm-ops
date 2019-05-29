@@ -35,8 +35,13 @@ def _create_case_json(sample_row, collection_exercise_id, action_plan_id) -> str
                    'postcode': sample_row['POSTCODE'], 'latitude': sample_row['LATITUDE'],
                    'longitude': sample_row['LONGITUDE'], 'oa': sample_row['OA'],
                    'lsoa': sample_row['LSOA'], 'msoa': sample_row['MSOA'],
-                   'lad': sample_row['LAD'], 'rgn': sample_row['RGN'],
+                   'lad': sample_row['LAD'], 'region': sample_row['REGION'],
                    'htcWillingness': sample_row['HTC_WILLINGNESS'], 'htcDigital': sample_row['HTC_DIGITAL'],
-                   'treatmentCode': sample_row['TREATMENT_CODE'], 'collectionExerciseId': collection_exercise_id,
+                   'fieldCoordinatorId': sample_row['FIELDCOORDINATOR_ID'],
+                   'fieldOfficerId': sample_row['FIELDOFFICER_ID'],
+                   'treatmentCode': sample_row['TREATMENT_CODE'],
+                   'ceExpectedCapacity': sample_row['CE_EXPECTED_CAPACITY'],
+                   'collectionExerciseId': collection_exercise_id,
                    'actionPlanId': action_plan_id}
+
     return json.dumps(create_case)

@@ -1,7 +1,7 @@
 import json
 import uuid
 
-from flask import Blueprint, render_template, url_for, request, Response
+from flask import Blueprint, render_template, url_for, request
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 
@@ -30,13 +30,13 @@ def create_action_rule(action_plan_id):
     try:
         trigger_date_time = convert_to_iso_timestamp(request.form['trigger_date_time'])
     except ValueError:
-        abort(400)
+        abort(400, 'Invalid trigger date time')
 
     if request.form.get('classifiers'):
         try:
             classifiers = json.loads(request.form['classifiers'])
         except ValueError:
-            abort(Response('Invalid classifiers json', 400))
+            abort(400, 'Invalid classifiers json')
     else:
         classifiers = None
 

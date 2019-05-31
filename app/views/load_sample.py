@@ -19,7 +19,7 @@ def get_sample(action_plan_id):
 @auth.login_required
 def upload_sample(action_plan_id):
     if 'sample' not in request.files:
-        abort(400)
+        abort(400, 'No sample file selected')
 
     sample_file_in_bytes = request.files['sample'].stream
     sample_file = (line.decode() for line in sample_file_in_bytes)

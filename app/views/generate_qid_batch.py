@@ -1,11 +1,11 @@
 import uuid
 
 from flask import Blueprint, render_template, request, url_for
+from generate_qid_batch import generate_messages_from_config_file
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 
 from app.auth import auth
-from app.generate_qid_batch import generate_messages_from_config_file
 
 blueprint = Blueprint('generate_qid_batch', __name__, template_folder='templates')
 

@@ -15,12 +15,12 @@ def test_upload_qid_batch_config_file_empty_batch_id(client):
     post_data = {'config-file': (BytesIO(b'config\nfile'), 'config-file.csv'), 'batch_id': ''}
 
     # When
-    generate_messages_from_config_file_patch, response = post_to_generate_qid_batch(client, post_data)
+    patched_generate_batch, response = post_to_generate_qid_batch(client, post_data)
 
     # Then
-    generate_messages_from_config_file_patch.assert_called_once()
+    patched_generate_batch.assert_called_once()
     assert response.status_code == 302
-    call_batch_id = generate_messages_from_config_file_patch.call_args[0][1]
+    call_batch_id = patched_generate_batch.call_args[0][1]
     assert isinstance(call_batch_id, uuid.UUID)
 
 
@@ -30,12 +30,12 @@ def test_upload_qid_batch_config_file_with_batch_id(client):
     post_data = {'config-file': (BytesIO(b'config\nfile'), 'config-file.csv'), 'batch_id': batch_id}
 
     # When
-    generate_messages_from_config_file_patch, response = post_to_generate_qid_batch(client, post_data)
+    patched_generate_batch, response = post_to_generate_qid_batch(client, post_data)
 
     # Then
-    generate_messages_from_config_file_patch.assert_called_once()
+    patched_generate_batch.assert_called_once()
     assert response.status_code == 302
-    call_batch_id = generate_messages_from_config_file_patch.call_args[0][1]
+    call_batch_id = patched_generate_batch.call_args[0][1]
     assert call_batch_id == batch_id
 
 
@@ -44,7 +44,7 @@ def test_upload_qid_batch_config_file_invalid_batch_id(client):
     post_data = {'config-file': (BytesIO(b'config\nfile'), 'config-file.csv'), 'batch_id': 'not_a_valid_uuid4'}
 
     # When
-    generate_messages_from_config_file_patch, response = post_to_generate_qid_batch(client, post_data)
+    _, response = post_to_generate_qid_batch(client, post_data)
 
     # Then
     assert response.status_code == 400
@@ -56,7 +56,7 @@ def test_upload_qid_batch_no_config_file(client):
     post_data = {'batch_id': ''}
 
     # When
-    generate_messages_from_config_file_patch, response = post_to_generate_qid_batch(client, post_data)
+    _, response = post_to_generate_qid_batch(client, post_data)
 
     # Then
     assert response.status_code == 400
@@ -64,6 +64,6 @@ def test_upload_qid_batch_no_config_file(client):
 
 
 def post_to_generate_qid_batch(client, data):
-    with patch('app.views.generate_qid_batch.generate_messages_from_config_file') as patched_generate:
+    with patch('app.views.generate_qid_batch.generate_messages_from_config_file') as patched_generate_batch:
         response = client.post('/generate-qid-batch', data=data)
-    return patched_generate, response
+    return patched_generate_batch, response

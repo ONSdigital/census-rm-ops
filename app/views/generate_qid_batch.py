@@ -25,7 +25,7 @@ def generate_qid_batch():
     try:
         batch_id = uuid.UUID(request.form['batch_id'], version=4) if request.form['batch_id'] else uuid.uuid4()
     except ValueError:
-        abort(400, 'Invalid batch ID UUID')
+        abort(400, 'Invalid UUID for batch ID')
     batch_config_file_bytes = request.files['config-file'].stream
     batch_config_file = (line.decode() for line in batch_config_file_bytes)
 

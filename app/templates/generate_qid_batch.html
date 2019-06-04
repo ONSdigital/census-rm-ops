@@ -7,6 +7,11 @@
         <h1>Upload a QID batch config file</h1>
         <p>Upload a CSV config file specifying the questionnaire type and quantities of unaddressed QID/UAC pairs to generate</p>
         <form enctype="multipart/form-data">
+            <div class="form-group col-4">
+                <label for="action_rule_id">Batch ID</label>
+                <input class="form-control" type="text" id="batch_id" name="batch_id"
+                       placeholder="Leave blank to generate">
+            </div>
             <div class="input-group mb-3">
                 <div class="custom-file">
                     <input type="file" id="config-file-upload" name="config-file">

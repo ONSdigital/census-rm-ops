@@ -12,10 +12,13 @@ from app.timestamp import convert_to_iso_timestamp
 blueprint = Blueprint('action_rules', __name__, template_folder='templates')
 
 ACTION_TYPES = {
-    'ICL1E',
-    'ICL2W',
-    'ICHHQW',
-    'FF2QE'
+    "ICL1E",
+    "ICL2W",
+    "ICL4N",
+    "ICHHQE",
+    "ICHHQW",
+    "ICHHQN",
+    "FF2QE"
 }
 
 

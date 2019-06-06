@@ -17,7 +17,8 @@ ACTION_TYPES = {
     "ICL4N",
     "ICHHQE",
     "ICHHQW",
-    "ICHHQN"
+    "ICHHQN",
+    "FF2QE"
 }
 
 
@@ -35,13 +36,13 @@ def create_action_rule(action_plan_id):
     try:
         trigger_date_time = convert_to_iso_timestamp(request.form['trigger_date_time'])
     except ValueError:
-        abort(400)
+        abort(400, 'Invalid trigger date time')
 
     if request.form.get('classifiers'):
         try:
             classifiers = json.loads(request.form['classifiers'])
         except ValueError:
-            abort(Response('Invalid classifiers json', 400))
+            abort(400, 'Invalid classifiers json')
     else:
         classifiers = None
 

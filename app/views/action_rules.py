@@ -14,7 +14,7 @@ blueprint = Blueprint('action_rules', __name__, template_folder='templates')
 ACTION_TYPES = {
     "ICL1E",
     "ICL2W",
-    "ICL4E",
+    "ICL4N",
     "ICHHQE",
     "ICHHQW",
     "ICHHQN"

@@ -1,7 +1,7 @@
 import json
 import uuid
 
-from flask import Blueprint, render_template, url_for, request, Response
+from flask import Blueprint, render_template, url_for, request
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 

@@ -14,6 +14,7 @@ pyscss = "*"
 pika = "*"
 redis = "*"
 werkzeug = "<0.15"
+census-rm-qid-batch-runner = {editable = true,git = "https://github.com/ONSdigital/census-rm-qid-batch-runner",ref = "v0.0.1"}
 
 [dev-packages]
 pytest = "*"

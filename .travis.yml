@@ -8,7 +8,6 @@ env:
   global:
     - APP_SETTINGS=DevConfig
     - PIPENV_IGNORE_VIRTUALENVS=1
-    - DESTINATION_IMAGE_NAME="$DOCKER_GCP_LOCATION/census-rm-ops"
 
 install:
   - pip install pipenv
@@ -16,14 +15,9 @@ install:
 
 script:
   - pipenv check
-  - make test
+  - make docker
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    docker build -t "$DESTINATION_IMAGE_NAME" .;
-    docker login -u "${DOCKER_GCP_USERNAME}" -p "${DOCKER_GCP_PASSWORD}" "${DOCKER_GCP_REGISTRY}";
-    docker push "$DESTINATION_IMAGE_NAME";
-    fi
   - pipenv run codecov
 
 branches:

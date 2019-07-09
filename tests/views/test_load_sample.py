@@ -1,6 +1,8 @@
 from io import BytesIO
 from unittest.mock import ANY, patch
 
+from config import Config
+
 
 def test_get_upload_sample_page(client, requests_mock):
     requests_mock.get('/actionPlans/4c27fcbf-e069-44db-a239-99c9cd70a1d0', json={
@@ -30,6 +32,10 @@ def test_upload_social_sample_file(client):
                                data={'sample': (BytesIO(b'header\nline'), 'sample.csv')})
 
     load_sample_patch.assert_called_once_with(ANY, collection_exercise_id='4c27fcbf-e069-44db-a239-99c9cd70a1d0',
-                                              action_plan_id='4c27fcbf-e069-44db-a239-99c9cd70a1d0')
+                                              action_plan_id='4c27fcbf-e069-44db-a239-99c9cd70a1d0',
+                                              host=Config.RABBITMQ_HOST, port=Config.RABBITMQ_PORT,
+                                              vhost=Config.RABBITMQ_VHOST, exchange=Config.RABBITMQ_EXCHANGE,
+                                              user=Config.RABBITMQ_USER, password=Config.RABBITMQ_PASSWORD,
+                                              queue_name=Config.RABBITMQ_QUEUE)
 
     assert response.status_code == 302

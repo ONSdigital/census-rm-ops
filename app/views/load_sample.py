@@ -4,7 +4,9 @@ from werkzeug.utils import redirect
 
 from app.auth import auth
 from app.controllers import action_controller
-from app.load_sample import load_sample
+from load_sample import load_sample
+
+from config import Config
 
 blueprint = Blueprint('load_sample', __name__, template_folder='templates')
 
@@ -26,6 +28,9 @@ def upload_sample(action_plan_id):
 
     # For convenience use the action plan ID as the collection exercise ID
     load_sample(sample_file, collection_exercise_id=action_plan_id,
-                action_plan_id=action_plan_id)
+                action_plan_id=action_plan_id, host=Config.RABBITMQ_HOST, port=Config.RABBITMQ_PORT,
+                vhost=Config.RABBITMQ_VHOST, exchange=Config.RABBITMQ_EXCHANGE,
+                user=Config.RABBITMQ_USER, password=Config.RABBITMQ_PASSWORD,
+                queue_name=Config.RABBITMQ_QUEUE)
 
     return redirect(url_for('action_plans.get_action_plan', action_plan_id=action_plan_id))

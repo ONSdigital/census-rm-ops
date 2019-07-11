@@ -24,7 +24,7 @@
         "census-rm-sample-loader": {
             "editable": true,
             "git": "https://github.com/ONSdigital/census-rm-sample-loader",
-            "ref": "348a9dc6726101b51af3326411432a3806353a79"
+            "ref": "86b9deda3897bb9fdbe312448b583bf5636f7f77"
         },
         "certifi": {
             "hashes": [

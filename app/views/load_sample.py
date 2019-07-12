@@ -1,11 +1,10 @@
 from flask import Blueprint, render_template, url_for, request
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
+from load_sample import load_sample
 
 from app.auth import auth
 from app.controllers import action_controller
-from load_sample import load_sample
-
 from config import Config
 
 blueprint = Blueprint('load_sample', __name__, template_folder='templates')

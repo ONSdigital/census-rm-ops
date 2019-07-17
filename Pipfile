@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
+flask = "==0.12.3"
 requests = "*"
 tzlocal = "*"
 gunicorn = "*"
@@ -15,6 +15,7 @@ pika = "*"
 redis = "*"
 werkzeug = "<0.15"
 census-rm-qid-batch-runner = {editable = true,git = "https://github.com/ONSdigital/census-rm-qid-batch-runner",ref = "v0.0.1"}
+census-rm-sample-loader = {editable = true,git = "https://github.com/ONSdigital/census-rm-sample-loader",ref = "v0.0.1"}
 
 [dev-packages]
 pytest = "*"

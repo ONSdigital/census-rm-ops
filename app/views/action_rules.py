@@ -18,7 +18,17 @@ ACTION_TYPES = {
     "ICHHQE",
     "ICHHQW",
     "ICHHQN",
-    "FF2QE"
+    "FF2QE",
+    "P_RL_1RL1_1",
+    "P_RL_1RL2B_1",
+    "P_RL_1RL4",
+    "P_RL_1RL1_2",
+    "P_RL_1RL2B_2",
+    "P_RL_2RL1_3a",
+    "P_RL_2RL2B_3a",
+    "P_QU_H1",
+    "P_QU_H2",
+    "P_QU_H4",
 }
 
 

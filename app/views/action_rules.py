@@ -18,7 +18,7 @@ ACTION_TYPES = {
     "ICHHQE",
     "ICHHQW",
     "ICHHQN",
-    "FF2QE",
+    "FIELD",
     "P_RL_1RL1_1",
     "P_RL_1RL2B_1",
     "P_RL_1RL4",

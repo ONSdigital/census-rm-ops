@@ -29,6 +29,12 @@ ACTION_TYPES = {
     "P_QU_H1",
     "P_QU_H2",
     "P_QU_H4",
+    "P_RD_2RL1_1",
+    "P_RD_2RL2B_1",
+    "P_RD_2RL1_2",
+    "P_RD_2RL2B_2",
+    "P_RD_2RL1_3",
+    "P_RD_2RL2B_3"
 }
 
 

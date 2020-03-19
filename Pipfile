@@ -12,7 +12,7 @@ flask-httpauth = "*"
 flask-assets = "*"
 pika = "*"
 redis = "*"
-werkzeug = "<0.15"
+werkzeug = "<0.16"
 census-rm-qid-batch-runner = {editable = true,git = "https://github.com/ONSdigital/census-rm-qid-batch-runner",ref = "v1.4.0"}
 census-rm-sample-loader = {editable = true,git = "https://github.com/ONSdigital/census-rm-sample-loader",ref = "v1.4.0"}
 

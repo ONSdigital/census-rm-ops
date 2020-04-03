@@ -14,7 +14,7 @@ pika = "*"
 redis = "*"
 werkzeug = "*"
 census-rm-qid-batch-runner = {editable = true,git = "https://github.com/ONSdigital/census-rm-qid-batch-runner",ref = "v1.4.0"}
-census-rm-sample-loader = {editable = true,git = "https://github.com/ONSdigital/census-rm-sample-loader",ref = "771-make-sample-load-changes-to-meet-new-sample-spec"}
+census-rm-sample-loader = {editable = true,git = "https://github.com/ONSdigital/census-rm-sample-loader",ref = "v2.0.0"}
 
 [dev-packages]
 pytest = "*"

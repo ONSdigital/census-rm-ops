@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "==0.12.3"
+flask = "*"
 requests = "*"
 tzlocal = "*"
 gunicorn = "*"
@@ -12,9 +12,9 @@ flask-httpauth = "*"
 flask-assets = "*"
 pika = "*"
 redis = "*"
-werkzeug = "<0.15"
+werkzeug = "*"
 census-rm-qid-batch-runner = {editable = true,git = "https://github.com/ONSdigital/census-rm-qid-batch-runner",ref = "v1.4.0"}
-census-rm-sample-loader = {editable = true,git = "https://github.com/ONSdigital/census-rm-sample-loader",ref = "v1.4.0"}
+census-rm-sample-loader = {editable = true,git = "https://github.com/ONSdigital/census-rm-sample-loader",ref = "v2.0.0"}
 
 [dev-packages]
 pytest = "*"
@@ -24,4 +24,4 @@ pytest-cov = "*"
 requests-mock = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

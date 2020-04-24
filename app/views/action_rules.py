@@ -35,6 +35,10 @@ ACTION_TYPES = {
     "P_RD_2RL2B_2",
     "P_RD_2RL1_3",
     "P_RD_2RL2B_3"
+    "CE1_IC01",
+    "CE1_IC02",
+    "CE_IC03_1",
+    "CE_IC04_1",
 }
 
 

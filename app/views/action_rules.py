@@ -39,6 +39,8 @@ ACTION_TYPES = {
     "CE1_IC02",
     "CE_IC03_1",
     "CE_IC04_1",
+    "CE_IC03",
+    "CE_IC04"
 }
 
 

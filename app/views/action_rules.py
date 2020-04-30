@@ -39,9 +39,11 @@ ACTION_TYPES = {
     "CE1_IC02",
     "CE_IC03_1",
     "CE_IC04_1",
-    "CE1_IC05",
-    "CE1_IC06",
-    "CE1_IC08",
+    "CE_IC03",
+    "CE_IC04",
+    "CE_IC05",
+    "CE_IC06",
+    "CE_IC08",
 }
 
 

@@ -41,6 +41,8 @@ ACTION_TYPES = {
     "CE_IC04_1",
     "CE_IC03",
     "CE_IC04",
+    "SPG_IC11",
+    "SPG_IC12",
     "CE_IC05",
     "CE_IC06",
     "CE_IC08",

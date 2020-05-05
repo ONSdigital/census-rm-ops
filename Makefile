@@ -3,7 +3,7 @@ build:
 
 lint:
 	pipenv run flake8 ./app ./tests
-	pipenv check ./app ./tests
+	PIPENV_PYUP_API_KEY="" pipenv check ./app ./tests
 
 test: lint
 	pipenv run pytest --cov-report term-missing --cov app --capture no

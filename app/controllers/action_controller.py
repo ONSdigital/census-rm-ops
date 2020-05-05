@@ -13,7 +13,7 @@ def create_action_rule(action_rule_id, trigger_date_time, classifiers, action_pl
 
 
 def get_action_plans():
-    response = requests.get(f"{app.config['ACTION_SERVICE']}/actionPlans")
+    response = requests.get(f"{app.config['ACTION_SERVICE']}/actionPlans?size=1000")
     response.raise_for_status()
     action_plans = [{'id': action_plan['_links']['self']['href'].split('/')[-1],
                      'name': action_plan['name'],
@@ -42,7 +42,7 @@ def create_action_plan(action_plan):
 
 
 def get_action_rules(action_plan_id):
-    response = requests.get(f"{app.config['ACTION_SERVICE']}/actionPlans/{action_plan_id}/actionRules")
+    response = requests.get(f"{app.config['ACTION_SERVICE']}/actionPlans/{action_plan_id}/actionRules?size=1000")
     response.raise_for_status()
     return [{'id': action_rule['_links']['self']['href'].split('/')[-1],
              'trigger_date_time': action_rule['triggerDateTime'],

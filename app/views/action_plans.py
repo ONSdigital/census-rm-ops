@@ -1,7 +1,6 @@
 from flask import Blueprint, request, render_template
-from app.auth import auth
 import jwt
-import re
+import requests
 import os
 
 blueprint = Blueprint('action_plans', __name__, template_folder='templates')
@@ -17,7 +16,7 @@ def get_iap_user():
 
 def get_iap_public_key(key_id):
     if key_id not in get_iap_public_key.cache:
-        resp = request.get('https://www.gstatic.com/iap/verify/public_key')
+        resp = requests.get('https://www.gstatic.com/iap/verify/public_key')
         resp.raise_for_status()
         get_iap_public_key.cache = resp.json()
 

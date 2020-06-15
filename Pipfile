@@ -16,6 +16,7 @@ werkzeug = "*"
 census-rm-qid-batch-runner = {editable = true,git = "https://github.com/ONSdigital/census-rm-qid-batch-runner",ref = "v1.4.0"}
 census-rm-sample-loader = {editable = true,git = "https://github.com/ONSdigital/census-rm-sample-loader",ref = "v2.0.0"}
 pyjwt = "*"
+cryptography = "*"
 
 [dev-packages]
 pytest = "*"

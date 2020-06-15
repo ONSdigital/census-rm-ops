@@ -11,7 +11,7 @@ def get_iap_user():
     iap_jwt = request.headers['x-goog-iap-jwt-assertion']
     key = get_iap_public_key(jwt.get_unverified_header(iap_jwt).get('kid'))
     decoded_jwt = jwt.decode(iap_jwt, key, algorithms=['ES256'], audience=IAP_AUDIENCE)
-    return decoded_jwt['email'], decoded_jwt
+    return decoded_jwt['email']
 
 def get_jwt():
     iap_jwt = request.headers['x-goog-iap-jwt-assertion']

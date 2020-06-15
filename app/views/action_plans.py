@@ -20,7 +20,7 @@ def get_iap_public_key(key_id):
         resp.raise_for_status()
         get_iap_public_key.cache = resp.json()
 
-    return get_iap_public_key.cache[key_id], ''
+    return get_iap_public_key.cache[key_id]
 
 
 get_iap_public_key.cache = {}

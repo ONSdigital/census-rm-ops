@@ -27,7 +27,6 @@ def get_iap_public_key(key_id):
 get_iap_public_key.cache = {}
 
 @blueprint.route('/', methods=['GET'])
-@auth.login_required
 def index():
     user = get_iap_user()
 

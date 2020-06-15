@@ -1,38 +1,37 @@
-import uuid
-
-from flask import Blueprint, request, redirect, url_for, render_template
-
+from flask import Blueprint, request, render_template
 from app.auth import auth
-from app.controllers import action_controller
+import jwt
+import re
+import os
 
 blueprint = Blueprint('action_plans', __name__, template_folder='templates')
 
+IAP_AUDIENCE = os.environ['IAP_AUDIENCE']
+
+def get_iap_user():
+    iap_jwt = request.headers['x-goog-iap-jwt-assertion']
+    key = get_iap_public_key(jwt.get_unverified_header(iap_jwt).get('kid'))
+    decoded_jwt = jwt.decode(iap_jwt, key, algorithms=['ES256'], audience=IAP_AUDIENCE)
+    return decoded_jwt['email']
+
+
+def get_iap_public_key(key_id):
+    if key_id not in get_iap_public_key.cache:
+        resp = request.get('https://www.gstatic.com/iap/verify/public_key')
+        resp.raise_for_status()
+        get_iap_public_key.cache = resp.json()
+
+    return get_iap_public_key.cache[key_id]
+
+
+get_iap_public_key.cache = {}
 
 @blueprint.route('/', methods=['GET'])
 @auth.login_required
 def index():
-    return redirect(url_for('action_plans.get_action_plans'))
+    user = get_iap_user()
 
-
-@blueprint.route('/action-plans', methods=['GET'])
-@auth.login_required
-def get_action_plans():
-    return render_template('action_plans.html', action_plans=action_controller.get_action_plans())
-
-
-@blueprint.route('/action-plans/<action_plan_id>', methods=['GET'])
-@auth.login_required
-def get_action_plan(action_plan_id):
-    return render_template('action_plan.html', action_plan=action_controller.get_action_plan(action_plan_id))
-
-
-@blueprint.route('/action-plans', methods=['POST'])
-@auth.login_required
-def create_action_plan():
-    action_plan = {
-        'id': request.form.get('action_plan_id') or str(uuid.uuid4()),
-        'name': request.form['name'],
-        'description': request.form['description'],
-    }
-    action_controller.create_action_plan(action_plan)
-    return redirect(url_for('action_plans.get_action_plans'))
+    return render_template(
+        'main.html',
+        user=user,
+    )

@@ -12,13 +12,16 @@ from app.timestamp import convert_to_iso_timestamp
 blueprint = Blueprint('action_rules', __name__, template_folder='templates')
 
 ACTION_TYPES = {
+    "FIELD",
+
     "ICL1E",
     "ICL2W",
     "ICL4N",
+
     "ICHHQE",
     "ICHHQW",
     "ICHHQN",
-    "FIELD",
+
     "P_RL_1RL1_1",
     "P_RL_1RL2B_1",
     "P_RL_1RL4",
@@ -26,19 +29,26 @@ ACTION_TYPES = {
     "P_RL_1RL2B_2",
     "P_RL_2RL1_3a",
     "P_RL_2RL2B_3a",
-    "P_QU_H1",
-    "P_QU_H2",
-    "P_QU_H4",
+
+    "P_RL_1RL1A",
+    "P_RL_1RL2BA",
+    "P_RL_2RL1A",
+    "P_RL_2RL2BA",
+
     "P_RD_2RL1_1",
     "P_RD_2RL2B_1",
     "P_RD_2RL1_2",
     "P_RD_2RL2B_2",
     "P_RD_2RL1_3",
     "P_RD_2RL2B_3",
+
+    "P_QU_H1",
+    "P_QU_H2",
+    "P_QU_H4",
+
     "CE1_IC01",
     "CE1_IC02",
-    "CE_IC03_1",
-    "CE_IC04_1",
+
     "CE_IC03",
     "CE_IC04",
     "CE_IC05",
@@ -46,13 +56,14 @@ ACTION_TYPES = {
     "CE_IC08",
     "CE_IC09",
     "CE_IC10",
+
+    "CE_IC03_1",
+    "CE_IC04_1",
+
     "SPG_IC11",
     "SPG_IC12",
     "SPG_IC13",
     "SPG_IC14",
-    "CE_IC05",
-    "CE_IC06",
-    "CE_IC08",
 }
 
 

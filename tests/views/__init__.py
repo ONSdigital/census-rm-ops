@@ -19,7 +19,7 @@ ACTION_RULES = {
             "actionType": "ICL1E",
             "triggerDateTime": "2019-05-08T08:00:00Z",
             "hasTriggered": False,
-            "classifiers": None,
+            "userDefinedWhereClause": None,
             "_links": {
                 "self": {
                     "href": "http://localhost:8301/actionRules/156ba07d-37eb-4836-a1fb-3ab1580c1cf9"

@@ -1,4 +1,3 @@
-import json
 import uuid
 
 from flask import Blueprint, render_template, url_for, request
@@ -83,19 +82,16 @@ def create_action_rule(action_plan_id):
     except ValueError:
         abort(400, 'Invalid trigger date time')
 
-    if request.form.get('classifiers'):
-        try:
-            classifiers = json.loads(request.form['classifiers'])
-        except ValueError:
-            abort(400, 'Invalid classifiers json')
+    if request.form.get('where_clause'):
+        where_clause = request.form['where_clause']
     else:
-        classifiers = None
+        where_clause = None
 
     action_plan = action_controller.get_action_plan(action_plan_id)
 
     action_controller.create_action_rule(action_rule_id=request.form.get('action_rule_id') or str(uuid.uuid4()),
                                          trigger_date_time=trigger_date_time,
-                                         classifiers=classifiers,
+                                         where_clause=where_clause,
                                          action_plan_url=action_plan['url'],
                                          action_type=request.form['action_type'])
     return redirect(url_for('action_rules.get_action_rules', action_plan_id=action_plan_id))

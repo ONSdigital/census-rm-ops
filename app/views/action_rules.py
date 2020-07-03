@@ -82,10 +82,13 @@ def create_action_rule(action_plan_id):
     except ValueError:
         abort(400, 'Invalid trigger date time')
 
-    if request.form.get('where_clause'):
-        where_clause = request.form['where_clause']
-    else:
-        where_clause = None
+    if not request.form.get('where_clause') or not request.form.get('where_clause').strip():
+        abort(400, 'Empty where clause')
+
+    if request.form.get('where_clause').strip().endswith('AND'):
+        abort(400, 'Invalid where clause')
+
+    where_clause = request.form['where_clause']
 
     action_plan = action_controller.get_action_plan(action_plan_id)
 

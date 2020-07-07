@@ -17,7 +17,7 @@
                         <label class="tab"><b>Trigger date time:</b> {{ action_rule.trigger_date_time }}</label>
                     </div>
                     <div class="row">
-                        <label class="tab"><b>Where clause:</b> {{ action_rule.where_clause }}</label>
+                        <label class="tab"><b>Classifiers clause:</b> {{ action_rule.classifiers_clause }}</label>
                     </div>
                     <div class="row">
                         <label class="tab"><b>Has triggered:</b> {{ action_rule.has_triggered }}</label>
@@ -49,8 +49,8 @@
                 <input class="form-control" type="datetime-local" id="trigger_date_time" name="trigger_date_time">
             </div>
             <div class="form-group">
-                <label for="where_clause">Where clause</label>
-                <textarea class="form-control" id="where_clause" name="where_clause"
+                <label for="classifiers_clause">Classifiers clause</label>
+                <textarea class="form-control" id="classifiers_clause" name="classifiers_clause"
                           rows="5">case_type != 'HI' AND </textarea>
             </div>
             <div class="form-group">

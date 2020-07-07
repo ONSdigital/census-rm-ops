@@ -104,19 +104,19 @@ def create_action_rule(action_plan_id):
     except ValueError:
         abort(400, 'Invalid trigger date time')
 
-    if not request.form.get('where_clause') or not request.form.get('where_clause').strip():
-        abort(400, 'Empty where clause')
+    if not request.form.get('classifiers_clause') or not request.form.get('classifiers_clause').strip():
+        abort(400, 'Empty classifiers clause')
 
-    if request.form.get('where_clause').strip().endswith('AND'):
-        abort(400, 'Invalid where clause')
+    if request.form.get('classifiers_clause').strip().endswith('AND'):
+        abort(400, 'Invalid classifiers clause')
 
-    where_clause = request.form['where_clause']
+    classifiers_clause = request.form['classifiers_clause']
 
     action_plan = action_controller.get_action_plan(action_plan_id)
 
     action_controller.create_action_rule(action_rule_id=request.form.get('action_rule_id') or str(uuid.uuid4()),
                                          trigger_date_time=trigger_date_time,
-                                         where_clause=where_clause,
+                                         classifiers_clause=classifiers_clause,
                                          action_plan_url=action_plan['url'],
                                          action_type=request.form['action_type'])
     return redirect(url_for('action_rules.get_action_rules', action_plan_id=action_plan_id))

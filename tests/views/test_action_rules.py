@@ -19,7 +19,7 @@ def test_create_action_rule(client, requests_mock):
     response = client.post('/action-plans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/action-rules', data={
         'trigger_date_time': '2019-05-08T09:00',
         'action_type': 'ICL1E',
-        'where_clause': "case_type != 'HI'"
+        'classifiers_clause': "case_type != 'HI'"
     }, follow_redirects=True)
 
     assert response.status_code == 200
@@ -32,11 +32,11 @@ def test_invalid_classifiers_responds_400(client, requests_mock):
     response = client.post('/action-plans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/action-rules', data={
         'trigger_date_time': '2019-05-08T09:00',
         'action_type': 'ICL1E',
-        'where_clause': "case_type != 'HI' AND "
+        'classifiers_clause': "case_type != 'HI' AND "
     }, follow_redirects=True)
 
     assert response.status_code == 400
-    assert b'Invalid where clause' in response.data
+    assert b'Invalid classifiers clause' in response.data
 
 
 def test_missing_classifiers_responds_400(client, requests_mock):
@@ -49,7 +49,7 @@ def test_missing_classifiers_responds_400(client, requests_mock):
     }, follow_redirects=True)
 
     assert response.status_code == 400
-    assert b'Empty where clause' in response.data
+    assert b'Empty classifiers clause' in response.data
 
 
 def test_empty_classifiers_responds_400(client, requests_mock):
@@ -59,11 +59,11 @@ def test_empty_classifiers_responds_400(client, requests_mock):
     response = client.post('/action-plans/4c27fcbf-e069-44db-a239-99c9cd70a1d0/action-rules', data={
         'trigger_date_time': '2019-05-08T09:00',
         'action_type': 'ICL1E',
-        'where_clause': ' '
+        'classifiers_clause': ' '
     }, follow_redirects=True)
 
     assert response.status_code == 400
-    assert b'Empty where clause' in response.data
+    assert b'Empty classifiers clause' in response.data
 
 
 def mock_gets_from_action_scheduler(requests_mock):

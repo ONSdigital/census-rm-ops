@@ -2,9 +2,9 @@ import requests
 from flask import current_app as app
 
 
-def create_action_rule(action_rule_id, trigger_date_time, classifiers, action_plan_url, action_type,
+def create_action_rule(action_rule_id, trigger_date_time, classifiers_clause, action_plan_url, action_type,
                        has_triggered=False):
-    body = {'id': action_rule_id, 'triggerDateTime': trigger_date_time, 'classifiers': classifiers,
+    body = {'id': action_rule_id, 'triggerDateTime': trigger_date_time, 'classifiersClause': classifiers_clause,
             'actionPlan': action_plan_url, 'actionType': action_type, 'hasTriggered': has_triggered}
     response = requests.post(f'{app.config["ACTION_SERVICE"]}/actionRules', json=body)
     response.raise_for_status()
@@ -47,6 +47,6 @@ def get_action_rules(action_plan_id):
     return [{'id': action_rule['_links']['self']['href'].split('/')[-1],
              'trigger_date_time': action_rule['triggerDateTime'],
              'action_type': action_rule['actionType'],
-             'classifiers': action_rule['classifiers'],
+             'classifiers_clause': action_rule['classifiersClause'],
              'has_triggered': action_rule['hasTriggered']}
             for action_rule in response.json()['_embedded']['actionRules']]

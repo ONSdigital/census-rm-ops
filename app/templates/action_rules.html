@@ -17,7 +17,7 @@
                         <label class="tab"><b>Trigger date time:</b> {{ action_rule.trigger_date_time }}</label>
                     </div>
                     <div class="row">
-                        <label class="tab"><b>Classifiers:</b> {{ action_rule.classifiers }}</label>
+                        <label class="tab"><b>Classifiers clause:</b> {{ action_rule.classifiers_clause }}</label>
                     </div>
                     <div class="row">
                         <label class="tab"><b>Has triggered:</b> {{ action_rule.has_triggered }}</label>
@@ -35,8 +35,12 @@
             <div class="form-group">
                 <label for="action_type">Action type</label>
                 <select class="form-control" id="action_type" name="action_type">
-                    {% for item in action_types %}
-                        <option value="{{ item }}">{{ item }}</option>
+                    {% for group_name, group in action_types.items() %}
+                        <optgroup label="{{ group_name }}">
+                        {% for action_type in group %}
+                            <option value="{{ action_type }}">{{ action_type }}</option>
+                        {% endfor %}
+                        </optgroup>
                     {% endfor %}
                 </select>
             </div>
@@ -45,8 +49,9 @@
                 <input class="form-control" type="datetime-local" id="trigger_date_time" name="trigger_date_time">
             </div>
             <div class="form-group">
-                <label for="classifiers">Classifiers JSON</label>
-                <textarea class="form-control" id="classifiers" name="classifiers" rows="5"></textarea>
+                <label for="classifiers_clause">Classifiers clause</label>
+                <textarea class="form-control" id="classifiers_clause" name="classifiers_clause"
+                          rows="5">case_type != 'HI' AND </textarea>
             </div>
             <div class="form-group">
                 <input class="form-control" type="submit" formmethod="post" value="Create">

@@ -79,7 +79,7 @@ ACTION_TYPES = {
 
     ],
 
-    ['Reminder letter, individual']: [
+    'Reminder letter, individual': [
         "P_RL_1IRL1",
         "P_RL_1IRL1",
     ],

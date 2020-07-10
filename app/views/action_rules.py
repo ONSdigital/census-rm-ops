@@ -12,7 +12,7 @@ blueprint = Blueprint('action_rules', __name__, template_folder='templates')
 
 ACTION_TYPES = {
     'Field': ["FIELD"],
-    'Initial contact letters HH': [
+    'Initial contact letter HH': [
         "ICL1E",
         "ICL2W",
         "ICL4N",
@@ -38,22 +38,22 @@ ACTION_TYPES = {
         "SPG_IC11",
         "SPG_IC12",
     ],
-    "Initial contact q'naires HH": [
+    "Initial contact q'naire HH": [
         "ICHHQE",
         "ICHHQW",
         "ICHHQN",
     ],
-    "Initial contact q'naires CE Individual": [
+    "Initial contact q'naire CE Individual": [
         "CE_IC08",
         "CE_IC09",
         "CE_IC10",
     ],
-    "Initial contact q'naires SPG": [
+    "Initial contact q'naire SPG": [
         "SPG_IC13",
         "SPG_IC14",
     ],
 
-    'Reminder letters': [
+    'Reminder letter': [
         "P_RL_1RL1_1",
         "P_RL_1RL2B_1",
         "P_RL_1RL4",
@@ -62,7 +62,7 @@ ACTION_TYPES = {
         "P_RL_2RL1_3a",
         "P_RL_2RL2B_3a",
     ],
-    'Reminder letters, response driven': [
+    'Reminder letter, response driven': [
 
         "P_RD_2RL1_1",
         "P_RD_2RL2B_1",
@@ -71,7 +71,7 @@ ACTION_TYPES = {
         "P_RD_2RL1_3",
         "P_RD_2RL2B_3",
     ],
-    'Reminder letters, survey launched': [
+    'Reminder letter, survey launched': [
         "P_RL_1RL1A",
         "P_RL_1RL2BA",
         "P_RL_2RL1A",
@@ -79,7 +79,12 @@ ACTION_TYPES = {
 
     ],
 
-    "Reminder q'naires": [
+    ['Reminder letter, individual']: [
+        "P_RL_1IRL1",
+        "P_RL_1IRL1",
+    ],
+
+    "Reminder questionnaire": [
         "P_QU_H1",
         "P_QU_H2",
         "P_QU_H4",

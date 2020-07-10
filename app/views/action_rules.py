@@ -38,17 +38,17 @@ ACTION_TYPES = {
         "SPG_IC11",
         "SPG_IC12",
     ],
-    "Initial contact q'naire HH": [
+    "Initial contact questionnaire HH": [
         "ICHHQE",
         "ICHHQW",
         "ICHHQN",
     ],
-    "Initial contact q'naire CE Individual": [
+    "Initial contact questionnaire CE Individual": [
         "CE_IC08",
         "CE_IC09",
         "CE_IC10",
     ],
-    "Initial contact q'naire SPG": [
+    "Initial contact questionnaire SPG": [
         "SPG_IC13",
         "SPG_IC14",
     ],

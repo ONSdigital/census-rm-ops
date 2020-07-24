@@ -63,6 +63,7 @@ ACTION_TYPES = {
         "P_RL_2RL2B_3a",
         "P_RL_1RL1B",
         "P_RL_1RL2BB",
+        "P_RL_1RL4A",
     ],
     'Reminder letter, response driven': [
 

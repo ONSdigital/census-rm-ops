@@ -76,7 +76,7 @@ ACTION_TYPES = {
     ],
     'Reminder letter, individual': [
         "P_RL_1IRL1",
-        "P_RL_1IRL1",
+        "P_RL_1IRL2B",
     ],
     "Reminder questionnaire": [
         "P_QU_H1",

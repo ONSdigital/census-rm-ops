@@ -17,7 +17,6 @@ ACTION_TYPES = {
         "ICL2W",
         "ICL4N",
     ],
-
     'Initial contact letter CE1': [
         "CE1_IC01",
         "CE1_IC02",
@@ -52,7 +51,6 @@ ACTION_TYPES = {
         "SPG_IC13",
         "SPG_IC14",
     ],
-
     'Reminder letter': [
         "P_RL_1RL1_1",
         "P_RL_1RL2B_1",
@@ -63,7 +61,6 @@ ACTION_TYPES = {
         "P_RL_2RL2B_3a",
     ],
     'Reminder letter, response driven': [
-
         "P_RD_2RL1_1",
         "P_RD_2RL2B_1",
         "P_RD_2RL1_2",
@@ -76,20 +73,16 @@ ACTION_TYPES = {
         "P_RL_1RL2BA",
         "P_RL_2RL1A",
         "P_RL_2RL2BA",
-
     ],
-
     'Reminder letter, individual': [
         "P_RL_1IRL1",
         "P_RL_1IRL1",
     ],
-
     "Reminder questionnaire": [
         "P_QU_H1",
         "P_QU_H2",
         "P_QU_H4",
     ],
-
 }
 
 

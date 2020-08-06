@@ -59,6 +59,8 @@ ACTION_TYPES = {
         "P_RL_1RL4",
         "P_RL_1RL1_2",
         "P_RL_1RL2B_2",
+        "P_RL_2RL1",
+        "P_RL_2RL2B",
         "P_RL_2RL1_3a",
         "P_RL_2RL2B_3a",
         "P_RL_1RL1B",

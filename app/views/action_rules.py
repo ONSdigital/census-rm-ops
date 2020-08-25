@@ -21,13 +21,9 @@ ACTION_TYPES = {
         "CE1_IC01",
         "CE1_IC02",
     ],
-    'Initial contact letter CE Estab Individual': [
+    'Initial contact letter CE Individual': [
         "CE_IC03",
         "CE_IC04",
-    ],
-    'Initial contact letter CE Unit Individual': [
-        "CE_IC03_1",
-        "CE_IC04_1",
     ],
     'Initial contact letter CE Individual (NI)': [
         "CE_IC05",
@@ -56,25 +52,13 @@ ACTION_TYPES = {
         "P_RL_1RL2B_1",
         "P_RL_1RL4",
         "P_RL_2RL4",
-        "P_RL_1RL1_2",
-        "P_RL_1RL2B_2",
         "P_RL_2RL1",
         "P_RL_3RL1",
         "P_RL_2RL2B",
         "P_RL_3RL2B",
-        "P_RL_2RL1_3a",
-        "P_RL_2RL2B_3a",
         "P_RL_1RL1B",
         "P_RL_1RL2BB",
         "P_RL_1RL4A",
-    ],
-    'Reminder letter, response driven': [
-        "P_RD_2RL1_1",
-        "P_RD_2RL2B_1",
-        "P_RD_2RL1_2",
-        "P_RD_2RL2B_2",
-        "P_RD_2RL1_3",
-        "P_RD_2RL2B_3",
     ],
     'Reminder letter, survey launched': [
         "P_RL_1RL1A",

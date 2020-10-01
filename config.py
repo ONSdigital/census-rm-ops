@@ -27,7 +27,7 @@ class K8SDevelopmentConfig(Config):
     RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'case.sample.inbound')
     RABBITMQ_EXCHANGE = os.getenv('RABBITMQ_EXCHANGE', '')
     RABBITMQ_USER = os.getenv('RABBITMQ_USER', 'rmquser')
-    RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'rmqp455w0rd')
+    RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'qpassword')
     RABBITMQ_UNADDRESSED_QID_QUEUE = os.getenv('RABBITMQ_UNADDRESSED_QID_QUEUE', 'unaddressedRequestQueue')
 
 
@@ -42,7 +42,7 @@ class DevelopmentConfig(Config):
     RABBITMQ_QUEUE = os.getenv('RABBITMQ_QUEUE', 'case.sample.inbound')
     RABBITMQ_EXCHANGE = os.getenv('RABBITMQ_EXCHANGE', '')
     RABBITMQ_USER = os.getenv('RABBITMQ_USER', 'rmquser')
-    RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'rmqp455w0rd')
+    RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD', 'qpassword')
     RABBITMQ_UNADDRESSED_QID_QUEUE = os.getenv('RABBITMQ_UNADDRESSED_QID_QUEUE', 'unaddressedRequestQueue')
 
 

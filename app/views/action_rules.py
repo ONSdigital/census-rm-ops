@@ -60,6 +60,12 @@ ACTION_TYPES = {
         "P_RL_1RL2BB",
         "P_RL_1RL4A",
     ],
+    "Reminder letter, response-driven (LSOAs)": [
+        "P_RD_RNP41",
+        "P_RD_RNP42B",
+        "P_RD_RNP51",
+        "P_RD_RNP52B",
+    ],
     'Reminder letter, survey launched': [
         "P_RL_1RL1A",
         "P_RL_1RL2BA",

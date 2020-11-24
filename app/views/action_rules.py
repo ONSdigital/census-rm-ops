@@ -47,6 +47,10 @@ ACTION_TYPES = {
         "SPG_IC13",
         "SPG_IC14",
     ],
+    "Non compliance letter": [
+        "P_NC_NCLTA1",
+        "P_NC_NCLTA2B",
+    ],
     'Reminder letter': [
         "P_RL_1RL1_1",
         "P_RL_1RL2B_1",
